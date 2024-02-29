@@ -10,13 +10,13 @@ interface CurrencyConversionDisplayProps {
 
 const CurrencyConversionDisplay: React.FC<CurrencyConversionDisplayProps> = ({
   currencyData,
-  selectedCurrency,
   selectedCurrencyConvert
 }) => {
   const currencyName =
     currencyData?.rates[selectedCurrencyConvert]?.currency_name;
   const rateForAmount =
     currencyData?.rates[selectedCurrencyConvert]?.rate_for_amount;
+
   const rateAsNumber = parseFloat(rateForAmount ? rateForAmount : "0");
   const formattedRate = rateAsNumber
     .toFixed(2)

@@ -36,11 +36,22 @@ const DataFetcher: React.FC<DataFetcherProps> = ({
             selectedCurrency,
             bitcoinResponse.bpi[selectedCurrency]?.rate
           );
-          setCurrencyData(currencyResponse);
+
+          if (currencyResponse.status === "success") {
+            setCurrencyData(currencyResponse);
+          } else {
+            setError(
+              new Error(
+                `Currency API returned status ${currencyResponse.status}`
+              )
+            );
+          }
         }
         setBitcoinData(bitcoinResponse);
         setLoading(false);
       } catch (error: any) {
+        console.log("error ", error);
+
         setError(error);
         setLoading(false);
       }

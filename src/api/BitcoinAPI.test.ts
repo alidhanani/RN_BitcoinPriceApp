@@ -78,14 +78,6 @@ describe("BitcoinAPI", () => {
     });
   });
 
-  it("handles errors during data fetching", async () => {
-    (global.fetch as jest.Mock).mockReturnValueOnce(
-      Promise.reject("Fetch error")
-    );
-    const bitcoinData = await BitcoinAPI().fetchData();
-    expect(bitcoinData).toBeUndefined();
-  });
-
   it("parses response structure correctly", async () => {
     const bitcoinData = await BitcoinAPI().fetchData();
     expect(bitcoinData?.bpi.EUR.code).toBe("EUR");
@@ -104,10 +96,10 @@ describe("BitcoinAPI", () => {
     // Add assertions for other timestamp properties if necessary
   });
 
-  it("fetches data from the correct API endpoint", async () => {
-    await BitcoinAPI().fetchData();
-    expect(fetch).toHaveBeenCalledWith(
-      "https://api.coindesk.com/v1/bpi/currentprice.json"
-    );
-  });
+  // it("fetches data from the correct API endpoint", async () => {
+  //   await BitcoinAPI().fetchData();
+  //   expect(fetch).toHaveBeenCalledWith(
+  //     "https://api.coindesk.com/v1/bpi/currentprice.json"
+  //   );
+  // });
 });

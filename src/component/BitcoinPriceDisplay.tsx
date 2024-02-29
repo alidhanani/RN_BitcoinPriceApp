@@ -4,12 +4,10 @@ import { Bitcoin } from "../model";
 
 interface BitcoinPriceDisplayProps {
   bitcoinData: Bitcoin | null;
-  selectedCurrency: "USD" | "GBP" | "EUR";
 }
 
 const BitcoinPriceDisplay: React.FC<BitcoinPriceDisplayProps> = ({
-  bitcoinData,
-  selectedCurrency
+  bitcoinData
 }) => {
   return (
     <View style={styles.dataContainer}>

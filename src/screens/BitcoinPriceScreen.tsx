@@ -19,19 +19,13 @@ import {
 } from "../component";
 
 const BitcoinPriceScreen: React.FC = () => {
-  const [selectedCurrency, setSelectedCurrency] = useState<
-    "USD" | "GBP" | "EUR"
-  >("USD");
+  const selectedCurrency = "USD";
   const didUpdate = useAPIStore((state: any) => state.setDidRefresh);
   const [refreshing, setRefreshing] = useState(false);
   const [selectedCurrencyConvert, setSelectedCurrencyConvert] =
     useState<string>("USD");
 
   const navigation = useNavigation();
-
-  const handleCurrencyChange = (value: string) => {
-    setSelectedCurrency(value as "USD" | "GBP" | "EUR");
-  };
 
   const handleCurrencyChangeConvert = (value: string) => {
     setSelectedCurrencyConvert(value);
@@ -80,19 +74,26 @@ const BitcoinPriceScreen: React.FC = () => {
                 <Text>Error fetching data: {error.message}</Text>
               ) : (
                 <>
-                  <BitcoinPriceDisplay
-                    bitcoinData={bitcoinData}
-                    selectedCurrency={selectedCurrency}
-                  />
+                  <BitcoinPriceDisplay bitcoinData={bitcoinData} />
                   <CurrencySelector
                     selectedCurrency={selectedCurrencyConvert}
                     onSelectCurrency={handleCurrencyChangeConvert}
-                    currencyOptions={Object.keys(currencyData?.rates || []).map(
-                      (currency) => ({
+                    currencyOptions={Object.keys(currencyData?.rates || [])
+                      .sort((a, b) => {
+                        const nameA =
+                          currencyData?.rates[
+                            a
+                          ]?.currency_name?.toLowerCase() || "";
+                        const nameB =
+                          currencyData?.rates[
+                            b
+                          ]?.currency_name?.toLowerCase() || "";
+                        return nameA.localeCompare(nameB);
+                      })
+                      .map((currency) => ({
                         label: `${currencyData?.rates[currency]?.currency_name} (${currency})`,
                         value: currency
-                      })
-                    )}
+                      }))}
                   />
                   <CurrencyConversionDisplay
                     currencyData={currencyData}
