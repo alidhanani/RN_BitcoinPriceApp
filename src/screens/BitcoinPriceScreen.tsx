@@ -7,14 +7,16 @@ import {
   RefreshControl,
   TouchableOpacity
 } from "react-native";
-import BitcoinPriceDisplay from "../component/BitcoinPriceDisplay";
-import CurrencyConversionDisplay from "../component/CurrencyConversionDisplay";
-import CurrencySelector from "../component/CurrencySelector";
-import DataFetcher from "../component/DataFetcher";
-import useAPIStore from "../../store/APIStore";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
+import { useAPIStore } from "../../store";
+import {
+  DataFetcher,
+  BitcoinPriceDisplay,
+  CurrencySelector,
+  CurrencyConversionDisplay
+} from "../component";
 
 const BitcoinPriceScreen: React.FC = () => {
   const [selectedCurrency, setSelectedCurrency] = useState<
@@ -35,17 +37,13 @@ const BitcoinPriceScreen: React.FC = () => {
     setSelectedCurrencyConvert(value);
   };
 
-  const fetchData = () => {
-    didUpdate();
-  };
-
   const refreshData = () => {
-    fetchData();
+    didUpdate();
   };
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    fetchData();
+    refreshData();
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);

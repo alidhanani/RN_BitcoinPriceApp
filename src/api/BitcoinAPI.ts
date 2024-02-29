@@ -1,4 +1,4 @@
-import Bitcoin from "../model/Bitcoin";
+import { Bitcoin } from "../model";
 
 const BitcoinAPI = () => {
   const fetchData = async (): Promise<Bitcoin | null> => {

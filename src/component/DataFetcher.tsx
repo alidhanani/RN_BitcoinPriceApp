@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { BitcoinAPI, CurrencyAPI } from "../api";
 import { Bitcoin, CurrencyConversion } from "../model";
-import useAPIStore from "../../store/APIStore";
+import { useAPIStore } from "../../store";
 
 interface DataFetcherProps {
   selectedCurrency: string;

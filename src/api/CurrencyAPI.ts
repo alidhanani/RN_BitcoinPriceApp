@@ -1,4 +1,4 @@
-import CurrencyConversion from "../model/CurrencyConversion";
+import { CurrencyConversion } from "../model";
 
 const CurrencyAPI = () => {
   const fetchData = async (
