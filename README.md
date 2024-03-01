@@ -8,6 +8,7 @@ This is an React Native Bitcoin Update application made with the following tools
 - Coindesk
 - Node
 - Typescript
+- i18Next
 
 ## Execution
 
@@ -17,6 +18,7 @@ To execute the application you will need to create `.env` file with the followin
 EXPO_PUBLIC_API_CURRENCY=<YOUR Currency API>
 EXPO_PUBLIC_API_URL_CURRENCY=https://api.getgeoapi.com/v2/currency/convert
 EXPO_PUBLIC_API_URL_BITCOIN=https://api.coindesk.com/v1/bpi/currentprice.json
+EXPO_PUBLIC_DEFAULT_CURRENCY=USD
 ```
 
 Current API KEY can be created from the following website `https://currency.getgeoapi.com`.
@@ -50,3 +52,4 @@ yarn android
 - https://expo.dev/
 - https://reactnativeelements.com/docs/1.2.0/icon
 - https://github.com/pmndrs/zustand
+- https://www.i18next.com/overview/getting-started
