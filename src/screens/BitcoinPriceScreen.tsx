@@ -20,9 +20,7 @@ import {
 } from "../component";
 
 const BitcoinPriceScreen: React.FC = () => {
-  const selectedCurrency = process.env.EXPO_PUBLIC_DEFAULT_CURRENCY
-    ? process.env.EXPO_PUBLIC_DEFAULT_CURRENCY
-    : "USD";
+  const selectedCurrency = process.env.EXPO_PUBLIC_DEFAULT_CURRENCY || "USD";
   const didUpdate = useAPIStore((state: any) => state.setDidRefresh);
   const [refreshing, setRefreshing] = useState(false);
   const [selectedCurrencyConvert, setSelectedCurrencyConvert] =
@@ -38,13 +36,13 @@ const BitcoinPriceScreen: React.FC = () => {
     didUpdate();
   };
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = () => {
     setRefreshing(true);
     refreshData();
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
-  }, []);
+  };
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -84,14 +82,12 @@ const BitcoinPriceScreen: React.FC = () => {
                     onSelectCurrency={handleCurrencyChangeConvert}
                     currencyOptions={Object.keys(currencyData?.rates || [])
                       .sort((a, b) => {
-                        const nameA =
-                          currencyData?.rates[
-                            a
-                          ]?.currency_name?.toLowerCase() || "";
-                        const nameB =
-                          currencyData?.rates[
-                            b
-                          ]?.currency_name?.toLowerCase() || "";
+                        const nameA = (
+                          currencyData?.rates[a]?.currency_name || ""
+                        ).toLowerCase();
+                        const nameB = (
+                          currencyData?.rates[b]?.currency_name || ""
+                        ).toLowerCase();
                         return nameA.localeCompare(nameB);
                       })
                       .map((currency) => ({
@@ -101,7 +97,6 @@ const BitcoinPriceScreen: React.FC = () => {
                   />
                   <CurrencyConversionDisplay
                     currencyData={currencyData}
-                    selectedCurrency={selectedCurrency}
                     selectedCurrencyConvert={selectedCurrencyConvert}
                   />
                 </>

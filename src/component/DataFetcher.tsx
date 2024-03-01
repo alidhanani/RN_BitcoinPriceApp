@@ -32,30 +32,30 @@ const DataFetcher: React.FC<DataFetcherProps> = ({
     const fetchData = async () => {
       try {
         setLoading(true);
-        const bitcoinResponse: Bitcoin | null = await BitcoinAPI().fetchData();
+        const bitcoinResponse = await BitcoinAPI().fetchData();
         if (bitcoinResponse) {
+          const selectedRate = bitcoinResponse.bpi[selectedCurrency]?.rate;
           const currencyResponse = await CurrencyAPI().fetchData(
             selectedCurrency,
-            bitcoinResponse.bpi[selectedCurrency]?.rate
+            selectedRate
           );
 
           if (currencyResponse.status === "success") {
             setCurrencyData(currencyResponse);
           } else {
-            setError(new Error(`${"apiError"} ${currencyResponse.status}`));
+            throw new Error(`${t("apiError")} ${currencyResponse.status}`);
           }
         }
         setBitcoinData(bitcoinResponse);
         setLoading(false);
-      } catch (error: any) {
-        console.log("error ", error);
-
+      } catch (error) {
+        console.log("error: ", error);
         setError(error);
         setLoading(false);
       }
     };
     fetchData();
-  }, [selectedCurrency, didUpdate]);
+  }, [selectedCurrency, didUpdate, t]);
 
   return <>{children({ bitcoinData, currencyData, loading, error })}</>;
 };

@@ -11,23 +11,29 @@ const BitcoinPriceDisplay: React.FC<BitcoinPriceDisplayProps> = ({
   bitcoinData
 }) => {
   const { t } = useTranslation();
-  return (
-    <View style={styles.dataContainer}>
-      <Text style={styles.title}>{t("title")}</Text>
+
+  const renderTimestamp = () => {
+    if (!bitcoinData || !bitcoinData.time || !bitcoinData.time.updated) {
+      return null;
+    }
+    return (
       <Text style={styles.timestamp}>
-        {t("lastUpdate")}: {bitcoinData?.time.updated}
+        {t("lastUpdate")}: {bitcoinData.time.updated}
       </Text>
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{t("title")}</Text>
+      {renderTimestamp()}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  dataContainer: {
+  container: {
     marginBottom: 20
-  },
-  dataText: {
-    fontSize: 18,
-    marginBottom: 10
   },
   title: {
     fontSize: 24,

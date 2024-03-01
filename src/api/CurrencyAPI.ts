@@ -16,7 +16,13 @@ const CurrencyAPI = () => {
       const response = await fetch(
         `${apiURL}?api_key=${apiCurrency}&from=${from}&amount=${numberValue}&format=json`
       );
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data. Status: ${response.status}`);
+      }
+
       const jsonData: CurrencyConversion = await response.json();
+
       return jsonData;
     } catch (error) {
       console.error("Error fetching data:", error);
