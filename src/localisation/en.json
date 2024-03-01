@@ -1,0 +1,9 @@
+{
+  "appTitle": "Bitcoin Price Tracker",
+  "title": "Bitcoin Price Tracker",
+  "lastUpdate": "Last Updated",
+  "bitCoinMessage": "Bitcoin in Currency of",
+  "currencyConvertError": "Currency conversion data not available yet",
+  "selectCurrency": "Select Currency:",
+  "apiError": "Currency API returned status"
+}

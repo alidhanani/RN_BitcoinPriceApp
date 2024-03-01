@@ -10,16 +10,19 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
-import { useAPIStore } from "../../store";
+import { useAPIStore } from "../store";
 import {
   DataFetcher,
   BitcoinPriceDisplay,
   CurrencySelector,
   CurrencyConversionDisplay
 } from "../component";
+import LocalisationButton from "../component/LocalisationButton";
 
 const BitcoinPriceScreen: React.FC = () => {
-  const selectedCurrency = "USD";
+  const selectedCurrency = process.env.EXPO_PUBLIC_DEFAULT_CURRENCY
+    ? process.env.EXPO_PUBLIC_DEFAULT_CURRENCY
+    : "USD";
   const didUpdate = useAPIStore((state: any) => state.setDidRefresh);
   const [refreshing, setRefreshing] = useState(false);
   const [selectedCurrencyConvert, setSelectedCurrencyConvert] =
@@ -64,6 +67,7 @@ const BitcoinPriceScreen: React.FC = () => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
+      <LocalisationButton />
       <View style={styles.container}>
         <DataFetcher selectedCurrency={selectedCurrency}>
           {({ bitcoinData, currencyData, loading, error }) => (

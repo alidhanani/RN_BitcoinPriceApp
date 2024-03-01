@@ -1,0 +1,9 @@
+{
+  "appTitle": "Suivi du prix du Bitcoin",
+  "title": "Suivi du prix du Bitcoin",
+  "lastUpdate": "Dernière mise à jour",
+  "bitCoinMessage": "Bitcoin dans la devise de",
+  "currencyConvertError": "Données de conversion de devise pas encore disponibles",
+  "selectCurrency": "Sélectionnez la devise :",
+  "apiError": "L'API de devises a renvoyé le statut"
+}

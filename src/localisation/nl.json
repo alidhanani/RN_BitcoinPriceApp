@@ -1,0 +1,9 @@
+{
+  "appTitle": "Bitcoin Prijs Tracker",
+  "title": "Bitcoin Prijs Tracker",
+  "lastUpdate": "Laatst bijgewerkt",
+  "bitCoinMessage": "Bitcoin in valuta van",
+  "currencyConvertError": "Valutaconversiegegevens nog niet beschikbaar",
+  "selectCurrency": "Selecteer valuta:",
+  "apiError": "Valuta API heeft status geretourneerd"
+}

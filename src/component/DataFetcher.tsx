@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { BitcoinAPI, CurrencyAPI } from "../api";
 import { Bitcoin, CurrencyConversion } from "../model";
-import { useAPIStore } from "../../store";
+import { useTranslation } from "react-i18next";
+import { useAPIStore } from "../store";
 
 interface DataFetcherProps {
   selectedCurrency: string;
@@ -18,6 +19,7 @@ const DataFetcher: React.FC<DataFetcherProps> = ({
   selectedCurrency,
   children
 }) => {
+  const { t } = useTranslation();
   const [bitcoinData, setBitcoinData] = useState<Bitcoin | null>(null);
   const didUpdate = useAPIStore((state: any) => state.didRefresh);
   const [currencyData, setCurrencyData] = useState<CurrencyConversion | null>(
@@ -40,11 +42,7 @@ const DataFetcher: React.FC<DataFetcherProps> = ({
           if (currencyResponse.status === "success") {
             setCurrencyData(currencyResponse);
           } else {
-            setError(
-              new Error(
-                `Currency API returned status ${currencyResponse.status}`
-              )
-            );
+            setError(new Error(`${"apiError"} ${currencyResponse.status}`));
           }
         }
         setBitcoinData(bitcoinResponse);

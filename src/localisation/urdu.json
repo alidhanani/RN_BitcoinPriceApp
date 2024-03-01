@@ -1,0 +1,9 @@
+{
+  "appTitle": "بٹ کوائن قیمت ٹریکر",
+  "title": "بٹ کوائن قیمت ٹریکر",
+  "lastUpdate": "آخری اپ ڈیٹ",
+  "bitCoinMessage": "بٹ کوائن میں کرنسی",
+  "currencyConvertError": "کرنسی تبادلہ ڈیٹا ابھی دستیاب نہیں ہے",
+  "selectCurrency": "کرنسی منتخب کریں:",
+  "apiError": "کرنسی API نے حالت واپس کی"
+}

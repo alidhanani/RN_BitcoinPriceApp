@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, StyleSheet } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
@@ -13,10 +14,11 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({
   onSelectCurrency,
   currencyOptions
 }) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.pickerContainer}>
       <View style={styles.labelContainer}>
-        <Text style={styles.pickerLabel}>Select Currency:</Text>
+        <Text style={styles.pickerLabel}>{t("selectCurrency")}</Text>
       </View>
       <View style={styles.pickerWrapper}>
         <RNPickerSelect
