@@ -46,6 +46,10 @@ To run the application on Android:
 yarn android
 ```
 
+## Screenshot
+
+![Alt text](appSnap.png?raw=true=20x20 "Bitcoin converter")
+
 ## References
 
 - https://currency.getgeoapi.com/
