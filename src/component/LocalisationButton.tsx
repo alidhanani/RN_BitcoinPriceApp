@@ -13,60 +13,34 @@ const LocalisationButton = () => {
     setLanguage(language);
   };
 
+  const languages = [
+    { code: "en", label: "English" },
+    { code: "fr", label: "French" },
+    { code: "nl", label: "Dutch" },
+    { code: "urdu", label: "Urdu" }
+  ];
+
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity
-        style={[styles.button, language === "en" && styles.selectedButton]}
-        onPress={(e) => handleButtonPress("en", e)}
-      >
-        <Text
+      {languages.map((lang) => (
+        <TouchableOpacity
+          key={lang.code}
           style={[
-            styles.buttonText,
-            language === "en" && styles.selectedButtonText
+            styles.button,
+            language === lang.code && styles.selectedButton
           ]}
+          onPress={(e) => handleButtonPress(lang.code, e)}
         >
-          English
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.button, language === "fr" && styles.selectedButton]}
-        onPress={(e) => handleButtonPress("fr", e)}
-      >
-        <Text
-          style={[
-            styles.buttonText,
-            language === "fr" && styles.selectedButtonText
-          ]}
-        >
-          French
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.button, language === "nl" && styles.selectedButton]}
-        onPress={(e) => handleButtonPress("nl", e)}
-      >
-        <Text
-          style={[
-            styles.buttonText,
-            language === "nl" && styles.selectedButtonText
-          ]}
-        >
-          Dutch
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.button, language === "urdu" && styles.selectedButton]}
-        onPress={(e) => handleButtonPress("urdu", e)}
-      >
-        <Text
-          style={[
-            styles.buttonText,
-            language === "urdu" && styles.selectedButtonText
-          ]}
-        >
-          Urdu
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={[
+              styles.buttonText,
+              language === lang.code && styles.selectedButtonText
+            ]}
+          >
+            {lang.label}
+          </Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };

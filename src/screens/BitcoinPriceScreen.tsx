@@ -15,9 +15,9 @@ import {
   DataFetcher,
   BitcoinPriceDisplay,
   CurrencySelector,
-  CurrencyConversionDisplay
+  CurrencyConversionDisplay,
+  LocalisationButton
 } from "../component";
-import LocalisationButton from "../component/LocalisationButton";
 
 const BitcoinPriceScreen: React.FC = () => {
   const selectedCurrency = process.env.EXPO_PUBLIC_DEFAULT_CURRENCY
