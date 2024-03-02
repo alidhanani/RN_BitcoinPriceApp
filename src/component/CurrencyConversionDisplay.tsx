@@ -2,17 +2,17 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { CurrencyConversion } from "../model";
 import { useTranslation } from "react-i18next";
+import { useDataFetcher } from "./DataFetcher";
 
 interface CurrencyConversionDisplayProps {
-  currencyData: CurrencyConversion | null;
   selectedCurrencyConvert: string;
 }
 
 const CurrencyConversionDisplay: React.FC<CurrencyConversionDisplayProps> = ({
-  currencyData,
   selectedCurrencyConvert
 }) => {
   const { t } = useTranslation();
+  const { currencyData } = useDataFetcher();
 
   const formatRate = (rate: string) =>
     parseFloat(rate || "0")

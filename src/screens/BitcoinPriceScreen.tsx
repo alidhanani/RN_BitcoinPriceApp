@@ -21,8 +21,7 @@ import { useAPIStore } from "../store";
 
 const BitcoinPriceScreen: React.FC = () => {
   const selectedCurrency = process.env.EXPO_PUBLIC_DEFAULT_CURRENCY || "USD";
-  const { bitcoinData, currencyData, loading, error, fetchBitcoinData } =
-    useDataFetcher();
+  const { currencyData, loading, error, fetchBitcoinData } = useDataFetcher();
   const [refreshing, setRefreshing] = useState(false);
   const selectedCurrencyConvert = useAPIStore(
     (state: any) => state.selectCurrency
@@ -78,7 +77,7 @@ const BitcoinPriceScreen: React.FC = () => {
           <Text>Error fetching data: {error.message}</Text>
         ) : (
           <>
-            <BitcoinPriceDisplay bitcoinData={bitcoinData} />
+            <BitcoinPriceDisplay />
             <CurrencySelector
               selectedCurrency={selectedCurrencyConvert}
               onSelectCurrency={handleCurrencyChangeConvert}
@@ -98,7 +97,6 @@ const BitcoinPriceScreen: React.FC = () => {
                 }))}
             />
             <CurrencyConversionDisplay
-              currencyData={currencyData}
               selectedCurrencyConvert={selectedCurrencyConvert}
             />
           </>

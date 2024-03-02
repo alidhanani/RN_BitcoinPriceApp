@@ -2,15 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Bitcoin } from "../model";
 import { useTranslation } from "react-i18next";
+import { useDataFetcher } from "./DataFetcher";
 
-interface BitcoinPriceDisplayProps {
-  bitcoinData: Bitcoin | null;
-}
+interface BitcoinPriceDisplayProps {}
 
-const BitcoinPriceDisplay: React.FC<BitcoinPriceDisplayProps> = ({
-  bitcoinData
-}) => {
+const BitcoinPriceDisplay: React.FC<BitcoinPriceDisplayProps> = () => {
   const { t } = useTranslation();
+  const { bitcoinData } = useDataFetcher();
 
   const renderTimestamp = () => {
     if (!bitcoinData || !bitcoinData.time || !bitcoinData.time.updated) {
