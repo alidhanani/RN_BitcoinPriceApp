@@ -13,6 +13,7 @@ import {
   initReactI18next,
   useTranslation
 } from "react-i18next";
+import { DataFetcherProvider } from "./src/component/DataFetcher";
 
 const Stack = createStackNavigator();
 
@@ -40,11 +41,13 @@ const App = () => {
   const { t } = useTranslation();
   return (
     <I18nextProvider i18n={i18next}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name={t("appTitle")} component={BitcoinPriceScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <DataFetcherProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name={t("appTitle")} component={BitcoinPriceScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </DataFetcherProvider>
     </I18nextProvider>
   );
 };

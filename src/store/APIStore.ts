@@ -1,13 +1,14 @@
 import { create } from "zustand";
 
 interface APIStoreState {
-  didRefresh: boolean;
-  setDidRefresh: () => void;
+  selectCurrency: string;
+  setSelectCurrency: (currency: string) => void;
 }
 
 const useAPIStore = create<APIStoreState>((set) => ({
-  didRefresh: false,
-  setDidRefresh: () => set((state) => ({ didRefresh: !state.didRefresh }))
+  selectCurrency: "USD",
+  setSelectCurrency: (currency: string) =>
+    set((state) => ({ selectCurrency: currency }))
 }));
 
 export default useAPIStore;

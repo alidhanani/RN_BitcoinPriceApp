@@ -10,21 +10,26 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
-import { useAPIStore } from "../store";
 import {
-  DataFetcher,
   BitcoinPriceDisplay,
   CurrencySelector,
   CurrencyConversionDisplay,
   LocalisationButton
 } from "../component";
+import { useDataFetcher } from "../component/DataFetcher";
+import { useAPIStore } from "../store";
 
 const BitcoinPriceScreen: React.FC = () => {
   const selectedCurrency = process.env.EXPO_PUBLIC_DEFAULT_CURRENCY || "USD";
-  const didUpdate = useAPIStore((state: any) => state.setDidRefresh);
+  const { bitcoinData, currencyData, loading, error, fetchBitcoinData } =
+    useDataFetcher();
   const [refreshing, setRefreshing] = useState(false);
-  const [selectedCurrencyConvert, setSelectedCurrencyConvert] =
-    useState<string>("USD");
+  const selectedCurrencyConvert = useAPIStore(
+    (state: any) => state.selectCurrency
+  );
+  const setSelectedCurrencyConvert = useAPIStore(
+    (state: any) => state.setSelectCurrency
+  );
 
   const navigation = useNavigation();
 
@@ -33,7 +38,7 @@ const BitcoinPriceScreen: React.FC = () => {
   };
 
   const refreshData = () => {
-    didUpdate();
+    fetchBitcoinData(selectedCurrency);
   };
 
   const onRefresh = () => {
@@ -67,43 +72,37 @@ const BitcoinPriceScreen: React.FC = () => {
     >
       <LocalisationButton />
       <View style={styles.container}>
-        <DataFetcher selectedCurrency={selectedCurrency}>
-          {({ bitcoinData, currencyData, loading, error }) => (
-            <>
-              {loading ? (
-                <ActivityIndicator size="large" color="#0000ff" />
-              ) : error ? (
-                <Text>Error fetching data: {error.message}</Text>
-              ) : (
-                <>
-                  <BitcoinPriceDisplay bitcoinData={bitcoinData} />
-                  <CurrencySelector
-                    selectedCurrency={selectedCurrencyConvert}
-                    onSelectCurrency={handleCurrencyChangeConvert}
-                    currencyOptions={Object.keys(currencyData?.rates || [])
-                      .sort((a, b) => {
-                        const nameA = (
-                          currencyData?.rates[a]?.currency_name || ""
-                        ).toLowerCase();
-                        const nameB = (
-                          currencyData?.rates[b]?.currency_name || ""
-                        ).toLowerCase();
-                        return nameA.localeCompare(nameB);
-                      })
-                      .map((currency) => ({
-                        label: `${currencyData?.rates[currency]?.currency_name} (${currency})`,
-                        value: currency
-                      }))}
-                  />
-                  <CurrencyConversionDisplay
-                    currencyData={currencyData}
-                    selectedCurrencyConvert={selectedCurrencyConvert}
-                  />
-                </>
-              )}
-            </>
-          )}
-        </DataFetcher>
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : error ? (
+          <Text>Error fetching data: {error.message}</Text>
+        ) : (
+          <>
+            <BitcoinPriceDisplay bitcoinData={bitcoinData} />
+            <CurrencySelector
+              selectedCurrency={selectedCurrencyConvert}
+              onSelectCurrency={handleCurrencyChangeConvert}
+              currencyOptions={Object.keys(currencyData?.rates || [])
+                .sort((a, b) => {
+                  const nameA = (
+                    currencyData?.rates[a]?.currency_name || ""
+                  ).toLowerCase();
+                  const nameB = (
+                    currencyData?.rates[b]?.currency_name || ""
+                  ).toLowerCase();
+                  return nameA.localeCompare(nameB);
+                })
+                .map((currency) => ({
+                  label: `${currencyData?.rates[currency]?.currency_name} (${currency})`,
+                  value: currency
+                }))}
+            />
+            <CurrencyConversionDisplay
+              currencyData={currencyData}
+              selectedCurrencyConvert={selectedCurrencyConvert}
+            />
+          </>
+        )}
       </View>
     </ScrollView>
   );
