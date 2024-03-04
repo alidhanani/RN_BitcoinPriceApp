@@ -8,7 +8,7 @@ interface APIStoreState {
 const useAPIStore = create<APIStoreState>((set) => ({
   selectCurrency: "USD",
   setSelectCurrency: (currency: string) =>
-    set((state) => ({ selectCurrency: currency }))
+    set(() => ({ selectCurrency: currency }))
 }));
 
 export default useAPIStore;

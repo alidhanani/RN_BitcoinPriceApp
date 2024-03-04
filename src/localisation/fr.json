@@ -5,5 +5,11 @@
   "bitCoinMessage": "Bitcoin dans la devise de",
   "currencyConvertError": "Données de conversion de devise pas encore disponibles",
   "selectCurrency": "Sélectionnez la devise :",
-  "apiError": "L'API de devises a renvoyé le statut"
+  "apiError": "L'API de devises a renvoyé le statut",
+  "language": {
+    "en": "Anglais",
+    "fr": "Français",
+    "nl": "Néerlandais",
+    "urdu": "Ourdou"
+  }
 }

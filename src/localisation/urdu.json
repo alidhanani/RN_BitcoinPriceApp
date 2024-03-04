@@ -5,5 +5,11 @@
   "bitCoinMessage": "بٹ کوائن میں کرنسی",
   "currencyConvertError": "کرنسی تبادلہ ڈیٹا ابھی دستیاب نہیں ہے",
   "selectCurrency": "کرنسی منتخب کریں:",
-  "apiError": "کرنسی API نے حالت واپس کی"
+  "apiError": "کرنسی API نے حالت واپس کی",
+  "language": {
+    "en": "انگریزی",
+    "fr": "فرانسیسی",
+    "nl": "ڈچ",
+    "urdu": "اردو"
+  }
 }

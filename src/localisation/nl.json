@@ -5,5 +5,11 @@
   "bitCoinMessage": "Bitcoin in valuta van",
   "currencyConvertError": "Valutaconversiegegevens nog niet beschikbaar",
   "selectCurrency": "Selecteer valuta:",
-  "apiError": "Valuta API heeft status geretourneerd"
+  "apiError": "Valuta API heeft status geretourneerd",
+  "language": {
+    "en": "Engels",
+    "fr": "Frans",
+    "nl": "Nederlands",
+    "urdu": "Urdu"
+  }
 }

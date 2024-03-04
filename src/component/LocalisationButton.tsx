@@ -2,8 +2,10 @@ import i18next from "i18next";
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useLangStore } from "../store";
+import { useTranslation } from "react-i18next";
 
 const LocalisationButton = () => {
+  const { t } = useTranslation();
   const language = useLangStore((state: any) => state.language);
   const setLanguage = useLangStore((state: any) => state.setLanguage);
 
@@ -14,10 +16,10 @@ const LocalisationButton = () => {
   };
 
   const languages = [
-    { code: "en", label: "English" },
-    { code: "fr", label: "French" },
-    { code: "nl", label: "Dutch" },
-    { code: "urdu", label: "Urdu" }
+    { code: "en", label: t("language.en") },
+    { code: "fr", label: t("language.fr") },
+    { code: "nl", label: t("language.nl") },
+    { code: "urdu", label: t("language.urdu") }
   ];
 
   return (
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "blue"
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "bold"
   },
   selectedButtonText: {

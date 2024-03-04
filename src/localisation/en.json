@@ -5,5 +5,11 @@
   "bitCoinMessage": "Bitcoin in Currency of",
   "currencyConvertError": "Currency conversion data not available yet",
   "selectCurrency": "Select Currency:",
-  "apiError": "Currency API returned status"
+  "apiError": "Currency API returned status",
+  "language": {
+    "en": "English",
+    "fr": "French",
+    "nl": "Dutch",
+    "urdu": "Urdu"
+  }
 }

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { BitcoinAPI, CurrencyAPI } from "../api";
 import { Bitcoin, CurrencyConversion } from "../model";
@@ -42,6 +41,7 @@ export const DataFetcherProvider: React.FC<DataFetcherProviderProps> = ({
       setLoading(true);
       const bitcoinResponse = await BitcoinAPI().fetchData();
       if (bitcoinResponse) {
+        //@ts-ignore
         const selectedRate = bitcoinResponse.bpi[selectedCurrency]?.rate;
         const currencyResponse = await CurrencyAPI().fetchData(
           selectedCurrency,
@@ -56,7 +56,7 @@ export const DataFetcherProvider: React.FC<DataFetcherProviderProps> = ({
       }
       setBitcoinData(bitcoinResponse);
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       console.log("error: ", error);
       setError(error);
       setLoading(false);
